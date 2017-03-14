@@ -1,0 +1,32 @@
+From: Darik Horn <dajhorn@vanadac.com>
+Date: Tue, 11 Oct 2011 18:32:58 -0500
+Subject: Revert "Remove /etc/hostid missing warning"
+
+This reverts commit 6b3b569df30d13ed7bbbff877cffc71290a52f12.
+ .
+ spl-linux (0.6.5.3-0ubuntu1) xenial; urgency=medium
+ .
+   * Updated to spl-0.6.5.3 from https://github.com/zfsonlinux/spl.git
+Author: Tim Gardner <tim.gardner@canonical.com>
+---
+ module/spl/spl-generic.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/module/spl/spl-generic.c b/module/spl/spl-generic.c
+index ce60963..9e28032 100644
+--- a/module/spl/spl-generic.c
++++ b/module/spl/spl-generic.c
+@@ -524,8 +524,12 @@ hostid_read(void)
+ 
+ 	file = kobj_open_file(spl_hostid_path);
+ 
+-	if (file == (struct _buf *)-1)
++	if (file == (struct _buf *)-1) {
++		printk(KERN_WARNING
++		       "SPL: The %s file is not found.\n",
++		       spl_hostid_path);
+ 		return -1;
++	}
+ 
+ 	result = kobj_get_filesize(file, &size);
+ 

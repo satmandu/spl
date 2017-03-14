@@ -1,0 +1,22 @@
+From: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Date: Thu, 30 Jun 2016 11:04:42 -0400
+Subject: Add-COPYING-to-EXTRA_DIST
+
+===================================================================
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 4977448..89950ed 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -20,7 +20,7 @@ nodist_kernel_HEADERS = spl.release spl_config.h module/$(LINUX_SYMBOLS)
+ endif
+ 
+ AUTOMAKE_OPTIONS = foreign
+-EXTRA_DIST  = autogen.sh META DISCLAIMER copy-builtin
++EXTRA_DIST  = autogen.sh META DISCLAIMER copy-builtin COPYING
+ EXTRA_DIST += config/config.awk config/rpm.am config/deb.am config/tgz.am
+ 
+ distclean-local::
